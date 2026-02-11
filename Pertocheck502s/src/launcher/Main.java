@@ -16,6 +16,8 @@ public class Main {
                 }
             }
             RestApiServer.iniciarServidor(porta);
+        } else if (args.length > 0 && args[0].equalsIgnoreCase("--portas")) {
+            utils.PortasDisponiveis.listarPortas();
         } else if (args.length > 0 && (args[0].equalsIgnoreCase("--help") || args[0].equalsIgnoreCase("-h"))) {
             mostrarAjuda();
         } else {
@@ -43,10 +45,12 @@ public class Main {
         System.out.println("Opcoes:");
         System.out.println("  (sem parametros)    Inicia interface grafica (GUI)");
         System.out.println("  --api [porta]       Inicia servidor REST API (padrao: 9090)");
+        System.out.println("  --portas            Lista portas seriais disponiveis");
         System.out.println("  --help, -h          Mostra esta ajuda");
         System.out.println();
         System.out.println("Exemplos:");
         System.out.println("  java -jar Pertocheck502s.jar");
+        System.out.println("  java -jar Pertocheck502s.jar --portas");
         System.out.println("  java -jar Pertocheck502s.jar --api");
         System.out.println("  java -jar Pertocheck502s.jar --api 9090");
         System.out.println();

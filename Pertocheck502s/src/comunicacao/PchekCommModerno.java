@@ -31,8 +31,18 @@ public class PchekCommModerno {
 
     public void iniciaComunicacao() throws Erro {
         portaStr = paramString;
+        Log.getInstance().appendLog("Tentando abrir porta: " + portaStr + " com baudRate: " + paramInt);
+        
         try {
             porta = SerialPort.getCommPort(portaStr);
+            
+            if (porta == null) {
+                throw new Erro("A1", "Porta " + portaStr + " não existe no sistema.");
+            }
+            
+            Log.getInstance().appendLog("Porta encontrada: " + porta.getSystemPortName());
+            Log.getInstance().appendLog("Porta em uso: " + porta.isOpen());
+            
             porta.setBaudRate(paramInt);
             porta.setNumDataBits(8);
             porta.setNumStopBits(1);
@@ -40,17 +50,30 @@ public class PchekCommModerno {
             porta.setFlowControl(SerialPort.FLOW_CONTROL_DISABLED);
             porta.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);
 
+            Log.getInstance().appendLog("Tentando abrir porta...");
             if (!porta.openPort()) {
-                throw new Erro("A2", "Erro ao abrir a porta: " + paramString + ", verifique se a porta está disponível.");
+                String erro = "Erro ao abrir a porta: " + paramString;
+                if (porta.isOpen()) {
+                    erro += " (porta já está em uso por outro programa)";
+                } else {
+                    erro += " (verifique se a impressora está conectada e ligada)";
+                }
+                throw new Erro("A2", erro);
             }
 
             in = porta.getInputStream();
             out = porta.getOutputStream();
             portaAberta = true;
+            
+            Log.getInstance().appendLog("Porta aberta com sucesso!");
 
+        } catch (Erro e) {
+            portaAberta = false;
+            throw e;
         } catch (Exception e) {
             portaAberta = false;
-            throw new Erro("1000", "Erro ao abrir a porta: " + paramString + " verifique se a impressora foi configurada corretamente", e);
+            Log.getInstance().appendLog("Exceção ao abrir porta: " + e.getMessage());
+            throw new Erro("1000", "Erro ao abrir a porta: " + paramString + " - " + e.getMessage(), e);
         }
     }
 

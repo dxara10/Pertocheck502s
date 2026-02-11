@@ -1,0 +1,13 @@
+# Configuração da Impressora Perto Check 502S
+# Versão 2.1.0
+
+# Porta Serial (COM1, COM2, COM3, etc)
+PORTA=COM4
+
+# Taxa de transmissão em bits por segundo
+# Valores comuns: 9600, 19200, 38400, 57600, 115200
+BITS_PER_SECOND=2400
+
+# Diretório padrão para seleção de arquivos (opcional)
+# Deixe em branco para usar o diretório padrão do sistema
+DIRETORIO=

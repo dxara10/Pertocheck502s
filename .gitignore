@@ -1,3 +1,9 @@
+# Compiled class files
+*.class
+*.jar
+*.war
+*.ear
+
 # Maven
 target/
 pom.xml.tag
@@ -10,17 +16,15 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-# Java
-*.class
-*.jar
-*.war
-*.ear
-*.log
-*.ctxt
-.mtj.tmp/
-hs_err_pid*
-
-# NetBeans
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
 nbproject/private/
 build/
 nbbuild/
@@ -28,35 +32,26 @@ dist/
 nbdist/
 .nb-gradle/
 
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-out/
+# Logs
+*.log
+logs/
 
-# Eclipse
-.classpath
-.project
-.settings/
-bin/
-
-# VS Code
-.vscode/
-
-# Sistema
+# OS
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Logs e temporários
-*.log
-log.txt
+# Temporary files
 *.tmp
-*.temp
+*.bak
+*.swp
+*~
+portas_temp.txt
 
-# Executável legado (manter apenas código fonte)
-Pertocheck502s/executavel/JRE/
+# Installers
+installer/Pertocheck502s-Setup-*.exe
+*.exe
+!Pertocheck502s/executavel/Transoft.exe
 
-# Configurações locais
-config.txt
+# Build artifacts
+Pertocheck502s/executavel/*.jar

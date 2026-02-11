@@ -74,6 +74,10 @@ public class UArquivos {
         pw.close();
     }
     
+    public static void escrever(String caminho, List<String> texto) throws IOException {
+        gravar(caminho, texto);
+    }
+    
     public static void append(String caminho, String append) throws FileNotFoundException, IOException {
         FileOutputStream out = new FileOutputStream(caminho, true);
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));

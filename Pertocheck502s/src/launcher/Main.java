@@ -7,12 +7,12 @@ public class Main {
     
     public static void main(String[] args) {
         if (args.length > 0 && args[0].equalsIgnoreCase("--api")) {
-            int porta = 8080;
+            int porta = 9090;
             if (args.length > 1) {
                 try {
                     porta = Integer.parseInt(args[1]);
                 } catch (NumberFormatException e) {
-                    System.err.println("Porta invalida, usando porta padrao 8080");
+                    System.err.println("Porta invalida, usando porta padrao 9090");
                 }
             }
             RestApiServer.iniciarServidor(porta);
@@ -42,7 +42,7 @@ public class Main {
         System.out.println();
         System.out.println("Opcoes:");
         System.out.println("  (sem parametros)    Inicia interface grafica (GUI)");
-        System.out.println("  --api [porta]       Inicia servidor REST API (padrao: 8080)");
+        System.out.println("  --api [porta]       Inicia servidor REST API (padrao: 9090)");
         System.out.println("  --help, -h          Mostra esta ajuda");
         System.out.println();
         System.out.println("Exemplos:");
@@ -51,8 +51,8 @@ public class Main {
         System.out.println("  java -jar Pertocheck502s.jar --api 9090");
         System.out.println();
         System.out.println("API REST:");
-        System.out.println("  Documentacao: http://localhost:8080/api/docs");
-        System.out.println("  Status: http://localhost:8080/api/status");
+        System.out.println("  Documentacao: http://localhost:9090/api/docs");
+        System.out.println("  Status: http://localhost:9090/api/status");
         System.out.println();
     }
 }

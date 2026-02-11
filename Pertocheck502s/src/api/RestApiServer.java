@@ -12,8 +12,8 @@ import static spark.Spark.*;
 public class RestApiServer {
 
     private static final Gson gson = new Gson();
-    private static final ChequeService chequeService = new ChequeService();
-    private static final int DEFAULT_PORT = 8080;
+    private static ChequeService chequeService = new ChequeService();
+    private static final int DEFAULT_PORT = 9090;
 
     public static void main(String[] args) {
         iniciarServidor(DEFAULT_PORT);

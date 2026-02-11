@@ -47,10 +47,11 @@ echo OK!
 
 echo.
 echo [4/5] Copiando arquivos...
-copy /Y "target\Pertocheck502s.jar" "%INSTALL_DIR%\" >nul
-copy /Y "Pertocheck502s\executavel\icon2.ico" "%INSTALL_DIR%\" >nul
+copy /Y "Pertocheck502s.jar" "%INSTALL_DIR%\" >nul
+copy /Y "icon2.ico" "%INSTALL_DIR%\" >nul
 copy /Y "README.md" "%INSTALL_DIR%\docs\" >nul
 copy /Y "INICIO_RAPIDO.md" "%INSTALL_DIR%\docs\" >nul
+copy /Y "GUIA_PHP.md" "%INSTALL_DIR%\docs\" >nul
 copy /Y "cheque_teste.txt" "%INSTALL_DIR%\exemplos\" >nul
 
 REM Cria arquivo de configuracao se nao existir

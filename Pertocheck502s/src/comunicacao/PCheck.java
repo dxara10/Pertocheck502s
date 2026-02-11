@@ -73,7 +73,7 @@ public class PCheck {
             
             //Porta da impressora
             if (listaConfig.get(0) != null) {
-                porta = listaConfig.get(0);
+                porta = listaConfig.get(0).trim().toUpperCase();
                 Log.getInstance().appendLog("Sistema do usuario: " + System.getProperty("os.name"));
                 Log.getInstance().appendLog("Porta da impressora: " + porta);
             }
@@ -81,7 +81,7 @@ public class PCheck {
             //Taxa de bits
             if (listaConfig.get(1) != null) {
                 try {
-                    baudRate = Integer.parseInt(listaConfig.get(1));
+                    baudRate = Integer.parseInt(listaConfig.get(1).trim());
                 } catch (NumberFormatException ex) {
                     throw new Erro("A3", "Verifique se a informação [BITS_PER_SECOND] está correta! Informada: " + listaConfig.get(1), ex);
                 }

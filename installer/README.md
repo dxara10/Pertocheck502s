@@ -1,105 +1,65 @@
-# 📦 INSTALADOR - Pertocheck502s v2.1.0
+# Instalador Pertocheck502s v2.1.0
 
-## 🚀 INSTALAÇÃO RÁPIDA
+## 📦 Conteúdo
 
-### Opção 1: Instalador Simples (Recomendado)
-1. Clique com botão direito em `install.bat`
-2. Selecione **"Executar como administrador"**
-3. Siga as instruções na tela
-4. Pronto! ✅
+Este instalador contém:
+- ✅ Pertocheck502s.jar (aplicação completa)
+- ✅ Documentação completa
+- ✅ Guia para programadores PHP
+- ✅ Arquivo de exemplo de cheque
 
-### Opção 2: Instalador MSI (Requer WiX Toolset)
-1. Execute `build-installer-jpackage.bat`
-2. Instale o arquivo `.msi` gerado
+## 🚀 Como Instalar
 
-### Opção 3: Instalador Inno Setup (Requer Inno Setup 6)
-1. Instale Inno Setup: https://jrsoftware.org/isdl.php
-2. Execute `build-installer.bat`
-3. Instale o arquivo `.exe` gerado
+1. **Execute como Administrador**
+   - Clique com botão direito em `install.bat`
+   - Selecione "Executar como administrador"
 
----
+2. **Siga as instruções na tela**
+   - O instalador verificará se Java está instalado
+   - Criará os diretórios necessários
+   - Copiará os arquivos
+   - Criará atalhos no Menu Iniciar
 
-## 📋 PRÉ-REQUISITOS
+3. **Configure a porta serial**
+   - Após instalação, edite: `C:\ProgramData\Pertocheck502s\config.txt`
+   - Defina a porta COM correta (ex: COM3)
 
-- **Java 21** ou superior
-  - Download: https://adoptium.net/
-  - O instalador verifica e avisa se não estiver instalado
+## 📍 Locais de Instalação
 
----
+- **Aplicação**: `C:\Program Files\Pertocheck502s\`
+- **Configuração**: `C:\ProgramData\Pertocheck502s\config.txt`
+- **Logs**: `C:\Windows\Temp\log.txt`
+- **Atalhos**: Menu Iniciar > Pertocheck502s
 
-## 📂 O QUE SERÁ INSTALADO
+## 📚 Documentação
 
-```
-C:\Program Files\Pertocheck502s\
-├── Pertocheck502s.jar          # Aplicação principal
-├── icon2.ico                   # Ícone
-├── docs\                       # Documentação
-│   ├── README.md
-│   └── INICIO_RAPIDO.md
-└── exemplos\                   # Arquivos de exemplo
-    └── cheque_teste.txt
+Após instalação, acesse:
+- `C:\Program Files\Pertocheck502s\docs\README.md`
+- `C:\Program Files\Pertocheck502s\docs\INICIO_RAPIDO.md`
+- `C:\Program Files\Pertocheck502s\docs\GUIA_PHP.md`
 
-C:\ProgramData\Pertocheck502s\
-└── config.txt                  # Configuração
+## 🔧 Requisitos
 
-Menu Iniciar > Pertocheck502s\
-├── Pertocheck502s              # Atalho principal
-└── Configuração                # Editar config.txt
-```
+- Windows 7 ou superior
+- Java 21 ou superior
+- Impressora Perto Check 502S conectada via serial
 
----
+## ⚙️ Executar API REST
 
-## ⚙️ CONFIGURAÇÃO
+Após instalação, para iniciar a API:
 
-Após instalar, edite o arquivo de configuração:
-- **Menu Iniciar** > **Pertocheck502s** > **Configuração**
-- Ou: `C:\ProgramData\Pertocheck502s\config.txt`
-
-```
-PORTA=COM1                      # Porta da impressora
-BITS_PER_SECOND=9600           # Taxa de transmissão
-DIRETORIO=C:\Users\...\Documents  # Diretório padrão
+```bash
+cd "C:\Program Files\Pertocheck502s"
+java -jar Pertocheck502s.jar --api
 ```
 
----
+A API estará disponível em: `http://localhost:9090`
 
-## 🗑️ DESINSTALAÇÃO
+## 🗑️ Desinstalar
 
-### Método 1: Painel de Controle
-1. Painel de Controle > Programas > Desinstalar um programa
-2. Selecione "Pertocheck502s 2.1.0"
-3. Clique em "Desinstalar"
+- Painel de Controle > Programas > Desinstalar um programa
+- Ou execute: `C:\Program Files\Pertocheck502s\uninstall.bat`
 
-### Método 2: Manual
-1. Execute: `C:\Program Files\Pertocheck502s\uninstall.bat`
+## 📞 Suporte
 
----
-
-## ✅ VERIFICAÇÃO
-
-Após instalar:
-1. Abra o Menu Iniciar
-2. Procure por "Pertocheck502s"
-3. Execute a aplicação
-4. Teste com o arquivo de exemplo
-
----
-
-## 🆘 PROBLEMAS
-
-### Java não encontrado
-- Instale Java 21: https://adoptium.net/
-- Reinicie o computador
-- Tente instalar novamente
-
-### Erro de permissão
-- Execute o instalador como administrador
-- Clique com botão direito > "Executar como administrador"
-
-### Aplicação não abre
-- Verifique se Java está instalado: `java -version`
-- Verifique logs em: `C:\Windows\Temp\log.txt`
-
----
-
-**Instalador criado com ❤️ para facilitar sua vida!**
+Para problemas técnicos, verifique os logs em `C:\Windows\Temp\log.txt`

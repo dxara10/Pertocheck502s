@@ -29,33 +29,43 @@ public class Configuracoes {
         
         try {
             
-            if(existeArquivo()) {
+            if(!existeArquivo()) {
+                Log.getInstance().appendLog("Arquivo de configuração não encontrado em: " + Constantes.DIRETORIO_TEMP + Constantes.ARQUIVO_CONFIGURACOES);
+                Log.getInstance().appendLog("Criando arquivo de configuração padrão...");
+                criarArquivoConfigPadrao();
+            }
+            
+            Log.getInstance().appendLog("Arquivo de configuração [config.txt] encontrado com sucesso!");
+            List<String> configs = lerArquivo();
+            
+            if(configs == null || configs.isEmpty()) {
+                throw new Erro("A", "Arquivo de configuração vazio, contate o suporte!");
+            }
+            
+            for (String conf : configs) {
                 
-                Log.getInstance().appendLog("Arquivo de configuração [config.txt] encontrado com sucesso!");
-                List<String> configs = lerArquivo();
-                
-                if(configs == null) {
-                    throw new Erro("A", "Arquivo de configuração vazio, contate o suporte!");
+                if(conf.trim().isEmpty() || conf.trim().startsWith("#")) {
+                    continue;
                 }
                 
-                for (String conf : configs) {
-                    
-                    parametros = conf.split(Pattern.quote("=")); //recupera só os valores depois do '='
-                    if(parametros.length <= 1) //caso algum parametro não tenha sido informado
-                        throw new Erro ("B", "Parametros do arquivo de configurações incorretos ou não preenchidos, contate o suporte!");
-                    
-                    if(parametros[1] != null) {   //então está preenchido
-                        param.add(parametros[1]);
-                    } else {                        
-                        if(!parametros[0].equalsIgnoreCase("DIRETORIO")) {
-                            //Arquivo de configurações está com erros
-                            throw new Erro ("C", "Parametros do arquivo de configurações incorretos ou não preenchidos, contate o suporte!");
-                        }
+                parametros = conf.split(Pattern.quote("=")); //recupera só os valores depois do '='
+                if(parametros.length <= 1) {
+                    if(conf.contains("DIRETORIO=")) {
+                        param.add("");
+                        continue;
+                    }
+                    throw new Erro ("B", "Parametros do arquivo de configurações incorretos ou não preenchidos, contate o suporte!");
+                }
+                
+                if(parametros[1] != null && !parametros[1].trim().isEmpty()) {
+                    param.add(parametros[1].trim());
+                } else {
+                    if(parametros[0].toUpperCase().contains("DIRETORIO")) {
+                        param.add("");
+                    } else {
+                        throw new Erro ("C", "Parametros do arquivo de configurações incorretos ou não preenchidos, contate o suporte!");
                     }
                 }
-            } else {
-                //Falha ao encontrar arquivo de configurações
-                throw new Erro ("D", "Arquivo de configurações não encontrado, contate o suporte!");
             }
             
         } catch (IOException ex) {
@@ -63,6 +73,27 @@ public class Configuracoes {
         }
         
         return param;
+    }
+    
+    
+    private void criarArquivoConfigPadrao() throws IOException {
+        List<String> linhas = new ArrayList<>();
+        linhas.add("# Configuração da Impressora Perto Check 502S");
+        linhas.add("# Versão 2.1.0");
+        linhas.add("");
+        linhas.add("# Porta Serial (COM1, COM2, COM3, COM4, etc)");
+        linhas.add("PORTA=COM1");
+        linhas.add("");
+        linhas.add("# Taxa de transmissão em bits por segundo");
+        linhas.add("# Valores comuns: 9600, 19200, 38400, 57600, 115200");
+        linhas.add("BITS_PER_SECOND=9600");
+        linhas.add("");
+        linhas.add("# Diretório padrão para seleção de arquivos (opcional)");
+        linhas.add("# Deixe em branco para usar o diretório padrão do sistema");
+        linhas.add("DIRETORIO=");
+        
+        UArquivos.escrever(Constantes.DIRETORIO_TEMP + Constantes.ARQUIVO_CONFIGURACOES, linhas);
+        Log.getInstance().appendLog("Arquivo de configuração criado em: " + Constantes.DIRETORIO_TEMP + Constantes.ARQUIVO_CONFIGURACOES);
     }
     
     

@@ -53,6 +53,13 @@
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.9</version>
         </dependency>
+        
+        <!-- Swing Layout -->
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -75,6 +82,9 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
+                    <excludes>
+                        <exclude>**/PchekComm.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 
